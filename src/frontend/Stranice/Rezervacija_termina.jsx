@@ -20,10 +20,9 @@ export const Rezervacija_termina = () => {
         e.preventDefault();
 
         // Provjeri da li su sva polja popunjena
-        if (/*ime && prezime*/  datumRezervacije && vrijemeRezervacije && teren/*brojLjudi*/ && idKorisnika) {
+        if ( datumRezervacije && vrijemeRezervacije && teren && idKorisnika) {
             Axios.post('http://localhost:3001/rezervacijaTermina ', {
-                // ime: ime,
-                // prezime: prezime,
+              
                 kontakt: kontakt,
                 datumRezervacije: datumRezervacije,
                 vrijemeRezervacije: vrijemeRezervacije,
@@ -40,8 +39,7 @@ export const Rezervacija_termina = () => {
                    alert('Vaša rezervacija je uspješno unesena.');
 
                     // Resetiranje inputa
-                    //setIme('');
-                    //setPrezime('');
+                    
                     setKontakt('');
                     setDatumRezervacije('');
                     setVrijemeRezervacije('');
@@ -89,25 +87,7 @@ export const Rezervacija_termina = () => {
                 <h2 className="header">Rezerviraj svoj termin!</h2>
                 <form className="rezervacije-form" onSubmit={unesiTermin}>
                     
-                {/* <label htmlFor="ime">Unesite svoje ime</label>
-                    <input
-                        value={ime}
-                        onChange={(e) => setIme(e.target.value)}
-                        type="ime"
-                        id="ime"
-                        name="ime"
-                    />
                     
-                    <label htmlFor="prezime">Unesite svoje prezime</label>
-                    <input
-                        value={prezime}
-                        onChange={(e) => setPrezime(e.target.value)}
-                        type="prezime"
-                        id="prezime"
-                        name="prezime"
-                    /> */}
-
-
                     <label htmlFor="kontakt">Unesite kontakt podatke (mail ili mobitel)</label>
                     <input
                         value={kontakt}

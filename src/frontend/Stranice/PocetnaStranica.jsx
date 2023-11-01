@@ -16,7 +16,8 @@ export const Pocetna = (props) => {
 
     return (
         <div>
-            <h1>REZERVACIJA TERMINA</h1>
+            <h1>FUTSAL ARENA</h1>
+            <h3>Prijavi se i rezerviraj svoj termin!</h3>
 
             <button className="gumb" onClick={handlePrijava}>PRIJAVA</button>
             <br />
