@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
-import { UserContext } from "C:/Users/User/rezervacija_termina/src/App";
+import { UserContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
 import './dizajn.css';
+import { FaFacebook, FaInstagram } from 'react-icons/fa'; // Uvozimo ikonice za Facebook i Instagram
 
 export const Informacije_o_racunu = () => {
   const navigate = useNavigate();
@@ -18,6 +19,9 @@ export const Informacije_o_racunu = () => {
   const [isEditing, setIsEditing] = useState(false);
   const location = useLocation();
   const { idKorisnika } = useContext(UserContext);
+
+  const facebookUrl = 'https://www.facebook.com/futsalarenarez';
+  const instagramUrl = 'https://www.instagram.com/futsal_arena_rezervacije/';
 
   useEffect(() => {
     if (idKorisnika) {
@@ -90,13 +94,36 @@ export const Informacije_o_racunu = () => {
 
   const handleDeleteAccount = () => {
     if (window.confirm("Jeste li sigurni da želite izbrisati svoj račun?")) {
-      axios.delete("http://localhost:3001/brisanjeRacuna", {
-        data: { idKorisnika: idKorisnika },
-      })
+      // Prvo dohvatite rezervacije korisnika
+      axios.get(`http://localhost:3001/prikazRezervacija?idKorisnika=${idKorisnika}`)
         .then((response) => {
-          console.log(response.data);
-          alert("Vaš račun je uspješno obisan!");
-          navigate('/');
+          const rezervacije = response.data;
+  
+          // Zatim iterirajte kroz rezervacije i obrišite ih
+          const promises = rezervacije.map((rezervacija) => {
+            return axios.delete("http://localhost:3001/brisanjeRezervacije", {
+              data: { idRezervacije: rezervacija.ID_rezervacije },
+            });
+          });
+  
+          // Nakon što su sve rezervacije obrisane, obrišite i račun korisnika
+          Promise.all(promises)
+            .then(() => {
+              axios.delete("http://localhost:3001/brisanjeRacuna", {
+                data: { idKorisnika: idKorisnika },
+              })
+                .then((response) => {
+                  console.log(response.data);
+                  alert("Vaš račun je uspješno obrisan!");
+                  navigate('/');
+                })
+                .catch((error) => {
+                  console.error(error);
+                });
+            })
+            .catch((error) => {
+              console.error(error);
+            });
         })
         .catch((error) => {
           console.error(error);
@@ -104,6 +131,7 @@ export const Informacije_o_racunu = () => {
     }
   };
 
+  
 
   return (
     <div>
@@ -210,6 +238,20 @@ export const Informacije_o_racunu = () => {
         <button className="gumb" onClick={handleDeleteAccount}>
           Izbriši račun
         </button>
+
+        <div className="social-links-container">
+          
+      <div className="social-links">
+        
+        <a href={facebookUrl} target="_blank" rel="noopener noreferrer">
+          <FaFacebook size={30} />
+        </a>
+        <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+          <FaInstagram size={30} />
+        </a>
+      </div>
+    </div>
+
 
       </div>
     </div>

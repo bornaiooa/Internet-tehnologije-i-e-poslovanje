@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Axios from 'axios';
 import './dizajn.css';
 import { UserContext } from "C:/Users/User/rezervacija_termina/src/App"; 
-
+import { FaFacebook, FaInstagram } from 'react-icons/fa'; // Uvozimo ikonice za Facebook i Instagram
 export const Rezervacija_termina = () => {
     //  const [ime, setIme] = useState('');
     //  const [prezime, setPrezime] = useState('');
@@ -14,6 +14,8 @@ export const Rezervacija_termina = () => {
      const location = useLocation();
      const { idKorisnika } = useContext(UserContext); // Dohvati idKorisnika iz konteksta
      
+     const facebookUrl = 'https://www.facebook.com/futsalarenarez';
+     const instagramUrl = 'https://www.instagram.com/futsal_arena_rezervacije/';
      const [errorMessage, setErrorMessage] = useState('');
 
     const unesiTermin = (e) => {
@@ -133,6 +135,18 @@ export const Rezervacija_termina = () => {
                     </button>
                 </form>
             </div>
+            <div className="social-links-container">
+          
+      <div className="social-links">
+        
+        <a href={facebookUrl} target="_blank" rel="noopener noreferrer">
+          <FaFacebook size={30} />
+        </a>
+        <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+          <FaInstagram size={30} />
+        </a>
+      </div>
+    </div>
         </div>
     );
 };

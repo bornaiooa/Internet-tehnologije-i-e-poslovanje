@@ -1,13 +1,18 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
-import { UserContext } from "C:/Users/User/rezervacija_termina/src/App";
+import { UserContext } from '../../App.js';
 import './dizajn.css';
+import { FaFacebook, FaInstagram } from 'react-icons/fa'; // Uvozimo ikonice za Facebook i Instagram
+
 export const Prikaz_rezervacija = () => {
   const [rezervacija, setRezervacija] = useState([]);
   const [nemaRezervacija, setNemaRezervacija] = useState(false); // Dodan state za provjeru prazne tablice
   const location = useLocation();
   const { idKorisnika } = useContext(UserContext); // Dohvati ID prijavljenog korisnika
+  const facebookUrl = 'https://www.facebook.com/futsalarenarez';
+  const instagramUrl = 'https://www.instagram.com/futsal_arena_rezervacije/';
+
 
   const dohvatiRezervacije = () => {
     axios
@@ -85,11 +90,7 @@ export const Prikaz_rezervacija = () => {
                   <td>{formatirajDatum(rezervacija.Datum_rezervacije)}</td>
                   <td>{rezervacija.Vrijeme_rezervacije}</td>
                   <td>
-                    {rezervacija.teren === 1
-                      ? "Unutarnji"
-                      : rezervacija.teren === 2
-                        ? "Vanjski"
-                        : ""}
+                    {rezervacija.Teren === "1" ? "Unutarnji" : rezervacija.Teren === "2" ? "Vanjski" : ""}
                   </td>
                   
                 </tr>
@@ -101,6 +102,21 @@ export const Prikaz_rezervacija = () => {
           Dohvati prošle rezervacije
         </button>
       </div>
+
+      <div className="social-links-container">
+          
+          <div className="social-links">
+            
+            <a href={facebookUrl} target="_blank" rel="noopener noreferrer">
+              <FaFacebook size={30} />
+            </a>
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+              <FaInstagram size={30} />
+            </a>
+          </div>
+        </div>
+
+
     </div>
   );
 };

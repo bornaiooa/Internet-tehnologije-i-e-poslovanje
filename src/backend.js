@@ -106,6 +106,23 @@ app.post("/azurirajRacun", (req, res) => {
     );
 });
 
+app.delete("/brisanjeRezervacije", (req, res) => {
+    const idRezervacije = req.body.idRezervacije; // ID rezervacije koju želite obrisati
+  
+    db.query(
+      "DELETE FROM Rezervacije WHERE ID_rezervacije = ?",
+      [idRezervacije],
+      (err, result) => {
+        if (err) {
+          console.error(err);
+          res.send({ message: err });
+        } else {
+          res.send(result);
+        }
+      }
+    );
+  });
+  
 
 app.delete("/brisanjeRacuna", (req, res) => {
     const idKorisnika = req.body.idKorisnika; // ID korisnika koji je prijavljen

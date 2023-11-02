@@ -151,3 +151,35 @@
     color: black;
     text-decoration: none;
   }
+
+  /* Stil za kontejner ikonica */
+.social-links-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #fff; /* Dodajte boju pozadine prema vašim željama */
+  padding: 10px; /* Dodajte željeni razmak oko ikonica */
+  box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.2); /* Opcioni efekt sjene ispod ikonica */
+}
+
+/* Stil za same ikonice */
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Stil za ikonice Facebook i Instagram (prilagodite boje, veličine i ostale stilove po želji) */
+.social-links a {
+  margin: 0 10px; /* Dodajte razmak između ikonica po potrebi */
+  color: #333; /* Boja ikonica */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #1877f2; /* Boja ikonica na hover */
+}
