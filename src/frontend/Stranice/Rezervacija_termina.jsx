@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Axios from 'axios';
 import './dizajn.css';
-import { UserContext } from "C:/Users/User/rezervacija_termina/src/App"; 
+import { UserContext } from "../../App"; 
 import { FaFacebook, FaInstagram } from 'react-icons/fa'; // Uvozimo ikonice za Facebook i Instagram
 export const Rezervacija_termina = () => {
     //  const [ime, setIme] = useState('');

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import "C:/Users/User/rezervacija_termina/src/frontend/Stranice/dizajn.css";
+import "./dizajn.css";
 
 
 export const Pocetna = (props) => {

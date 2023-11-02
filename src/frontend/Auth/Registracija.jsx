@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import Axios from "axios";
-import "C:/Users/User/rezervacija_termina/src/frontend/Stranice/dizajn.css";
+import "../Stranice/dizajn.css";
 
 export const Registracija = (props) => {
     const navigate = useNavigate(); // Korištenje useNavigate kuke za navigaciju

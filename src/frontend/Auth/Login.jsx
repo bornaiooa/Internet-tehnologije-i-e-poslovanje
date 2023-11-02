@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { UserContext } from "C:/Users/User/rezervacija_termina/src/App";
-import "C:/Users/User/rezervacija_termina/src/frontend/Stranice/dizajn.css";
+import { UserContext } from "../../App";
+import "../Stranice/dizajn.css";
 
 export const Login = (props) => {
   const { handleLogin } = useContext(UserContext); // Dobivanje handleLogin funkcije iz konteksta
