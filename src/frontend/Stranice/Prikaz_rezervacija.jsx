@@ -90,7 +90,7 @@ export const Prikaz_rezervacija = () => {
                   <td>{formatirajDatum(rezervacija.Datum_rezervacije)}</td>
                   <td>{rezervacija.Vrijeme_rezervacije}</td>
                   <td>
-                    {rezervacija.Teren === "1" ? "Unutarnji" : rezervacija.Teren === "2" ? "Vanjski" : ""}
+                    {rezervacija.Teren = "1" ? "Unutarnji" : rezervacija.Teren = "2" ? "Vanjski" : ""}
                   </td>
                   
                 </tr>
