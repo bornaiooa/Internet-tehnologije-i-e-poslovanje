@@ -108,21 +108,21 @@ app.post("/azurirajRacun", (req, res) => {
 
 app.delete("/brisanjeRezervacije", (req, res) => {
     const idRezervacije = req.body.idRezervacije; // ID rezervacije koju želite obrisati
-  
+
     db.query(
-      "DELETE FROM Rezervacije WHERE ID_rezervacije = ?",
-      [idRezervacije],
-      (err, result) => {
-        if (err) {
-          console.error(err);
-          res.send({ message: err });
-        } else {
-          res.send(result);
+        "DELETE FROM Rezervacije WHERE ID_rezervacije = ?",
+        [idRezervacije],
+        (err, result) => {
+            if (err) {
+                console.error(err);
+                res.send({ message: err });
+            } else {
+                res.send(result);
+            }
         }
-      }
     );
-  });
-  
+});
+
 
 app.delete("/brisanjeRacuna", (req, res) => {
     const idKorisnika = req.body.idKorisnika; // ID korisnika koji je prijavljen
@@ -149,7 +149,7 @@ app.post("/rezervacijaTermina", (req, res) => {
     const vrijemeRezervacije = req.body.vrijemeRezervacije;
     const teren = req.body.teren;
     const idKorisnika = req.body.idKorisnika;
-    
+
 
     // Dodavanje nove rezervacije u tablicu Rezervacije
     db.query(
@@ -166,6 +166,44 @@ app.post("/rezervacijaTermina", (req, res) => {
     );
 });
 
+app.get('/provjeriRezervaciju', (req, res) => {
+    const datumRezervacije = req.query.datumRezervacije;
+    db.query(
+        "SELECT * FROM Rezervacije WHERE Datum_rezervacije = ?",
+        [datumRezervacije],
+        (err, result) => {
+            if (err) {
+                console.error(err);
+                res.send({ message: "Greška pri provjeri rezervacije!" });
+            } else {
+                if (result.length > 0) {
+                    // Postojeći zapis je pronađen, stoga je datum zauzet
+                    res.send({ isReserved: true });
+                } else {
+                    // Zapis nije pronađen, datum je slobodan
+                    res.send({ isReserved: false });
+                }
+            }
+        }
+    );
+});
+
+app.get("/dohvatiZauzeteTermine", (req, res) => {
+    // Pretpostavljamo da je format datuma u bazi 'YYYY-MM-DD'
+    const query = "SELECT DISTINCT Datum_rezervacije FROM Rezervacije";
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Došlo je do greške pri dohvatu zauzetih termina.');
+        } else {
+            // Pretvoriti svaki datum u format koji se može lako koristiti na frontendu
+            const zauzetiTermini = results.map(row => row.Datum_rezervacije.toISOString().split('T')[0]);
+            res.json(zauzetiTermini);
+        }
+    });
+});
+
+
 app.get("/prikazRezervacija", (req, res) => {
     const idKorisnika = req.query.idKorisnika;
 
@@ -180,7 +218,6 @@ app.get("/prikazRezervacija", (req, res) => {
         }
     );
 });
-
 
 
 app.listen(3001, () => {

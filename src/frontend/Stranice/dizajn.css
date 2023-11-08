@@ -183,3 +183,13 @@
 .social-links a:hover {
   color: #1877f2; /* Boja ikonica na hover */
 }
+
+.zauzet-termin {
+    background-color: #FF8376 !important;
+    color: white !important;
+}
+
+.rezervacije-form-container {
+  align-items: center;
+}
+
