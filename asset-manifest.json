@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Internet-tehnologije-i-e-poslovanje/static/css/main.ebaf708e.css",
-    "main.js": "/Internet-tehnologije-i-e-poslovanje/static/js/main.4062f663.js",
-    "static/js/787.205ef773.chunk.js": "/Internet-tehnologije-i-e-poslovanje/static/js/787.205ef773.chunk.js",
-    "index.html": "/Internet-tehnologije-i-e-poslovanje/index.html",
-    "main.ebaf708e.css.map": "/Internet-tehnologije-i-e-poslovanje/static/css/main.ebaf708e.css.map",
-    "main.4062f663.js.map": "/Internet-tehnologije-i-e-poslovanje/static/js/main.4062f663.js.map",
-    "787.205ef773.chunk.js.map": "/Internet-tehnologije-i-e-poslovanje/static/js/787.205ef773.chunk.js.map"
+    "main.css": "/bornaiooa.github.io/Internet-tehnologije-i-e-poslovanje/static/css/main.47c5aa65.css",
+    "main.js": "/bornaiooa.github.io/Internet-tehnologije-i-e-poslovanje/static/js/main.4fb8fd03.js",
+    "static/js/787.205ef773.chunk.js": "/bornaiooa.github.io/Internet-tehnologije-i-e-poslovanje/static/js/787.205ef773.chunk.js",
+    "index.html": "/bornaiooa.github.io/Internet-tehnologije-i-e-poslovanje/index.html",
+    "main.47c5aa65.css.map": "/bornaiooa.github.io/Internet-tehnologije-i-e-poslovanje/static/css/main.47c5aa65.css.map",
+    "main.4fb8fd03.js.map": "/bornaiooa.github.io/Internet-tehnologije-i-e-poslovanje/static/js/main.4fb8fd03.js.map",
+    "787.205ef773.chunk.js.map": "/bornaiooa.github.io/Internet-tehnologije-i-e-poslovanje/static/js/787.205ef773.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ebaf708e.css",
-    "static/js/main.4062f663.js"
+    "static/css/main.47c5aa65.css",
+    "static/js/main.4fb8fd03.js"
   ]
 }
