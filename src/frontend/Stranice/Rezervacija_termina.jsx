@@ -34,25 +34,34 @@ export const Rezervacija_termina = () => {
             });
     }, []);
 
-    // Funkcija koja će se pozvati kada se promijeni datum u kalendaru
     const onDateChange = (value, event) => {
-        const dateWithoutTimezone = new Date(value.getTime() - (value.getTimezoneOffset() * 60000));
-        setDatumRezervacije(dateWithoutTimezone.toISOString().split('T')[0]);
-        alert('Upišite ostale podatke!');
-    };
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const selectedDate = new Date(value);
+        selectedDate.setHours(0, 0, 0, 0);
 
-
-    // Klasa za stiliziranje zauzetih datuma
-    const tileClassName = ({ date, view }) => {
-        // Dodaj stil samo za prikaz mjeseca
-        if (view === 'month') {
-            // Provjeri je li datum u nizu zauzetih termina
-            if (zauzetiTermini.some(termin => termin.toISOString().split('T')[0] === date.toISOString().split('T')[0])) {
-                return 'zauzet-termin';
-            }
+        if (selectedDate < today) {
+            alert('Odabrali ste datum koji je prošao! Izaberite drugi termin.');
+        }
+        else if (zauzetiTermini.some(termin => termin.toISOString().split('T')[0] === selectedDate.toISOString().split('T')[0])) {
+            alert('Odabrali ste datum koji je zauzet! Izaberite drugi termin.');
+        }
+        else {
+            const dateWithoutTimezone = new Date(value.getTime() - (value.getTimezoneOffset() * 60000));
+            setDatumRezervacije(dateWithoutTimezone.toISOString().split('T')[0]);
+            alert('Upišite ostale podatke za odabrani termin.');
         }
     };
 
+    const tileClassName = ({ date, view }) => {
+        if (view === 'month') {
+            if (zauzetiTermini.some(termin => termin.toISOString().split('T')[0] === date.toISOString().split('T')[0])) {
+                return 'zauzet-termin';
+            } else if (date >= new Date()) {
+                return 'slobodan-termin';
+            }
+        }
+    };
 
     const unesiTermin = (e) => {
         e.preventDefault();
@@ -108,7 +117,6 @@ export const Rezervacija_termina = () => {
                 console.error('Došlo je do greške pri dohvaćanju zauzetih termina', error);
             });
     };
-    
 
     return (
         <div>
@@ -141,7 +149,16 @@ export const Rezervacija_termina = () => {
             </nav>
             <div className="rezervacije-form-container">
                 <h2 className="header">Rezerviraj svoj termin!</h2>
-
+                <div className="legenda">
+                    <div className="legenda-item">
+                        <span className="legenda-boja zauzet-termin-legenda"></span>
+                        <span>Zauzeti datumi</span>
+                    </div>
+                    <div className="legenda-item">
+                        <span className="legenda-boja slobodan-termin-legenda"></span>
+                        <span>Slobodni datumi</span>
+                    </div>
+                </div>
 
                 <Calendar className="kalendar"
                     onChange={onDateChange}
@@ -150,7 +167,6 @@ export const Rezervacija_termina = () => {
                 /><br />
 
                 <form className="rezervacije-form" onSubmit={unesiTermin}>
-
 
                     <label htmlFor="kontakt">Unesite kontakt podatke (mail ili mobitel)</label>
                     <input
@@ -212,6 +228,5 @@ export const Rezervacija_termina = () => {
         </div>
     );
 };
-
 
 export default Rezervacija_termina;
