@@ -24,7 +24,7 @@ export const Registracija = (props) => {
         
         // Provjeri da li su sva polja popunjena
         if (name && lastname && email && username && pass) {
-            Axios.post("https://futsal-arena.vercel.app/registracija", {
+            Axios.post("https://futsal-arena.vercel.app:3001/registracija", {
                 name: name,
                 lastname: lastname,
                 email: email,
