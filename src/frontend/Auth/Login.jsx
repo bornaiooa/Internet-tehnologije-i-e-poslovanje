@@ -20,7 +20,7 @@ export const Login = (props) => {
 
   const login = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3001/prijava", {
+    axios.post("http://student.veleri.hr:3001/prijava", {
       username: username,
       password: pass,
     }).then((response) => {
