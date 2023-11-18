@@ -20,7 +20,7 @@ export const Login = (props) => {
 
   const login = (e) => {
     e.preventDefault();
-    axios.post("https://futsal-arena.vercel.app:3001/prijava", {
+    axios.post("http://localhost:3001/prijava", {
       username: username,
       password: pass,
     }).then((response) => {
